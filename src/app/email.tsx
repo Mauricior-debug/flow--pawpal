@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { Button, Field, Sheet } from '../components/ui';
 import { celebrate } from '../haptics';
 import { enterApp } from '../navigation';
+import { useStore } from '../store';
 
 export default function EmailScreen() {
+  const store = useStore();
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
 
-  async function submit() {
+  function submit() {
     const value = email.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       setError('Enter an email like you@email.com.');
@@ -16,7 +18,8 @@ export default function EmailScreen() {
     }
     setError('');
     setBusy(true);
-    await celebrate();
+    store.ensureSample();
+    celebrate();
     enterApp();
   }
 

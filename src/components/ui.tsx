@@ -124,7 +124,10 @@ export function Sheet({ title, children }: { title: string; children: ReactNode 
     >
       <ScrollView
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={[styles.sheetBody, { paddingBottom: Math.max(insets.bottom, 16) + 24 }]}
+        contentContainerStyle={[
+          styles.sheetBody,
+          { paddingBottom: Math.max(insets.bottom, 16) + 28, minHeight: 520 },
+        ]}
       >
         <View style={styles.sheetHead}>
           <Text accessibilityRole="header" style={styles.sheetTitle}>

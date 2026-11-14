@@ -22,14 +22,14 @@ export default function LessonScreen() {
     'Reward him and end the lesson. Keep the party short.',
   ];
 
-  async function advance() {
+  function advance() {
     if (step < steps.length - 1) {
       setStep(step + 1);
       return;
     }
     if (!store.lesson.completed) {
       store.finishLesson();
-      await celebrate();
+      celebrate();
     }
     setFinished(true);
   }

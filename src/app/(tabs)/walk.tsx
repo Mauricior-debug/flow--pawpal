@@ -29,10 +29,10 @@ export default function WalkScreen() {
     return () => registerScroll('walk', null);
   }, []);
 
-  async function onStop() {
+  function onStop() {
     const summary = store.stopWalk();
     if (!summary) return;
-    await celebrate();
+    celebrate();
     router.push({
       pathname: '/walk-done',
       params: { seconds: String(summary.seconds), km: String(summary.km) },

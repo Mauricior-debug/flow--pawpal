@@ -8,16 +8,16 @@ import { colors, font } from '../theme';
 export default function DeleteAccountScreen() {
   const store = useStore();
 
-  async function remove() {
+  function remove() {
     store.reset();
-    await celebrate();
+    celebrate();
     leaveApp();
   }
 
   return (
     <Sheet title="Delete account">
       <Text style={styles.body}>
-        This clears {store.dog.name}'s walks, meals, vet records, and training on this phone. You can sign in again with an empty log.
+        This clears {store.dog.name}'s walks, meals, vet records, and training on this phone. Signing in again brings the sample day back.
       </Text>
       <Button label={`Delete ${store.dog.name}'s records`} tone="orange" onPress={remove} />
     </Sheet>

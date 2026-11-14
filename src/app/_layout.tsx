@@ -17,7 +17,8 @@ const sheet = {
   headerShown: false,
   sheetGrabberVisible: true,
   sheetAllowedDetents: [0.55, 0.92],
-  sheetInitialDetentIndex: 0,
+  sheetInitialDetentIndex: 1,
+  sheetCornerRadius: 28,
   contentStyle: { backgroundColor: colors.cream },
 };
 
@@ -28,12 +29,13 @@ export default function RootLayout() {
     Nunito_700Bold,
     Nunito_800ExtraBold,
   });
+  const fontsReady = loaded || !!error;
 
   useEffect(() => {
-    if (loaded || error) SplashScreen.hideAsync().catch(() => undefined);
-  }, [loaded, error]);
-
-  if (!loaded && !error) return null;
+    if (fontsReady) SplashScreen.hideAsync().catch(() => undefined);
+    const timeout = setTimeout(() => SplashScreen.hideAsync().catch(() => undefined), 1200);
+    return () => clearTimeout(timeout);
+  }, [fontsReady]);
 
   return (
     <SafeAreaProvider>
