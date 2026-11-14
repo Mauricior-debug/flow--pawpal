@@ -91,7 +91,12 @@ function seed(): State {
       { id: 'w-jul', label: 'Jul', lbs: 29.0 },
       { id: 'w-oct', label: 'Oct', lbs: 29.5 },
     ],
-    walk: { status: 'active', elapsedSec: 25 * 60 + 32, distanceKm: 1.5, moments: [] },
+    walk: {
+      status: 'active',
+      elapsedSec: 25 * 60 + 32,
+      distanceKm: 1.5,
+      moments: [{ id: 'moment-park', note: 'Shady stop by the park gate' }],
+    },
     lastWalk: null,
     lesson: {
       title: 'Sit & Stay',
@@ -163,7 +168,8 @@ type Action =
   | { type: 'selectDay'; day: number }
   | { type: 'practiceTrick'; id: string }
   | { type: 'finishLesson' }
-  | { type: 'reset' };
+  | { type: 'reset' }
+  | { type: 'ensureSample' };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -287,6 +293,9 @@ function reducer(state: State, action: Action): State {
     }
     case 'reset':
       return fresh();
+    case 'ensureSample':
+      if (state.sample && (state.meals.length > 0 || state.visits.length > 0)) return state;
+      return seed();
     default:
       return state;
   }
@@ -313,6 +322,7 @@ type Store = State & {
   practiceTrick: (id: string) => boolean;
   finishLesson: () => void;
   reset: () => void;
+  ensureSample: () => void;
 };
 
 const StoreContext = createContext<Store | null>(null);
@@ -360,6 +370,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       },
       finishLesson: () => dispatch({ type: 'finishLesson' }),
       reset: () => dispatch({ type: 'reset' }),
+      ensureSample: () => dispatch({ type: 'ensureSample' }),
     };
   }, [state]);
 

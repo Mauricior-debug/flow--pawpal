@@ -7,17 +7,20 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button } from '../components/ui';
 import { celebrate } from '../haptics';
 import { enterApp } from '../navigation';
+import { useStore } from '../store';
 import { images } from '../images';
 import { colors, font, space } from '../theme';
 
 export default function WelcomeScreen() {
   const insets = useSafeAreaInsets();
+  const store = useStore();
   const [busy, setBusy] = useState(false);
 
-  async function continueWithApple() {
+  function continueWithApple() {
     if (busy) return;
     setBusy(true);
-    await celebrate();
+    store.ensureSample();
+    celebrate();
     enterApp();
   }
 

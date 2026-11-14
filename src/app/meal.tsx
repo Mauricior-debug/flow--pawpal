@@ -14,10 +14,10 @@ export default function MealScreen() {
   const [food, setFood] = useState('Royal Canin Puppy');
   const [error, setError] = useState('');
 
-  async function markFed() {
+  function markFed() {
     if (!store.nextMeal) return;
     store.markMealFed(store.nextMeal.id);
-    await celebrate();
+    celebrate();
     router.back();
   }
 

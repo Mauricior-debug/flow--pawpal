@@ -19,10 +19,10 @@ export default function TrickScreen() {
     );
   }
 
-  async function practice() {
+  function practice() {
     if (!trick || trick.done) return;
     const mastered = store.practiceTrick(trick.id);
-    if (mastered) await celebrate();
+    if (mastered) celebrate();
   }
 
   return (
