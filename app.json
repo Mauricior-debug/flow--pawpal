@@ -1,0 +1,69 @@
+{
+  "expo": {
+    "name": "PawPal",
+    "slug": "pawpal",
+    "scheme": "pawpal",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "runtimeVersion": "58.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/84dc2c0b-34fd-482e-96f1-77677df9caf7"
+    },
+    "backgroundColor": "#FDEFD2",
+    "description": "A native app for dog owners to track walks, meals, vet visits and training streaks.",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pawpal.app",
+      "backgroundColor": "#FDEFD2"
+    },
+    "android": {
+      "package": "com.pawpal.app",
+      "backgroundColor": "#FDEFD2",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#FDEFD2"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/images/icon.png",
+      "backgroundColor": "#FDEFD2"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FDEFD2",
+          "image": "./assets/images/splash.png",
+          "resizeMode": "contain"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "PawPal uses photos you choose so you can attach them to a walk."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "84dc2c0b-34fd-482e-96f1-77677df9caf7"
+      }
+    },
+    "owner": "naza123"
+  }
+}
